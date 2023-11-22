@@ -12,12 +12,12 @@ class Simcard {
   }
 
   static async findAll() {
-    const [rows] = await pool.query('SELECT * FROM ??', ['Simcards']);
+    const [rows] = await pool.query('SELECT * FROM ??', ['simcards']);
     return rows.map(row => new Simcard(row));
   }
 
   static async findByPk(id) {
-    const [rows] = await pool.query('SELECT * FROM ?? WHERE id = ?', ['Simcards', id]);
+    const [rows] = await pool.query('SELECT * FROM ?? WHERE id = ?', ['simcards', id]);
 
     if (rows.length === 0) {
       return null;
@@ -31,10 +31,10 @@ class Simcard {
 
     if (id) {
       // Update existing record
-      await pool.query('UPDATE ?? SET ? WHERE id = ?', ['Simcards', data, id]);
+      await pool.query('UPDATE ?? SET ? WHERE id = ?', ['simcards', data, id]);
     } else {
       // Insert new record
-      const [result] = await pool.query('INSERT INTO ?? SET ?', ['Simcards', data]);
+      const [result] = await pool.query('INSERT INTO ?? SET ?', ['simcards', data]);
       this.id = result.insertId;
     }
   }
